@@ -1,0 +1,52 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+        link(rel="stylesheet", href="/css/semantic.css")
+        link(rel="stylesheet", href="/css/main.css")
+    body 
+        .ui.top.fixed.menu.cf
+            .item.left
+                img.logo-img(src='/images/old_logo-top.1f1eb02.png' style="width: 60px !important;")
+            if name 
+                .user-name=name
+            else 
+                    .user-name Ichki ishar vazirligi Toshkent shahar boshqarmasi
+            .item.right
+                a(href='/user/login').ui.primary.button Kirish
+        form(action="/fulltest/correctsforall", method="post").ui.container.my-container
+            if again
+                .ui.info.message.transition
+                    .header Ushbu testni qaytadan ishlayapsiz
+                    ul.list
+                        li Barcha urinishlar saqlab qolinadi.
+                        li Birinchi urinish asosiy natija sifatida qaraladi.
+                        li Qayta ishlashni tavsiya qilamiz.
+            each test in testlist
+                .ui.piled.segment
+                    h4.ui.block.header=test.text_question.question_text
+                    .my-test-body 
+                        .ui.form
+                            .grouped.fields
+                                .field
+                                    .ui.radio.checkbox
+                                        input(type="radio", value=test.test_answer1._id name=test._id, checked)
+                                        label=test.test_answer1.answer_text
+                                .field
+                                    .ui.radio.checkbox
+                                        input(type="radio", value=test.test_answer2._id name=test._id)
+                                        label=test.test_answer2.answer_text
+                                .field
+                                    .ui.radio.checkbox
+                                        input(type="radio", value=test.test_answer3._id name=test._id)
+                                        label=test.test_answer3.answer_text
+                                .field
+                                    .ui.radio.checkbox
+                                        input(type="radio", value=test.test_answer4._id name=test._id)
+                                        label=test.test_answer4.answer_text
+            button(type="submit").ui.primary.button Yuborish
+        script(src="/js/jquery.js") 
+        script(src="/js/main.js")
