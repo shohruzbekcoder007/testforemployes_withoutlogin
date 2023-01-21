@@ -12,6 +12,7 @@ const { Answer } = require('../models/answer.model');
 const { Test, validate } = require('../models/app_test.model');
 const { CorrectAnswer } = require('../models/correct_answer.model');
 const { Result } = require('../models/result.model');
+const { Questionnaire } = require('../models/questionnaire');
 
 router.post('/', cookieJwtAuth, async (req, res) => {
 
@@ -183,6 +184,20 @@ router.post('/corrects', cookieJwtAuth, async (req, res) => {
         success: true
     })
 
+})
+
+router.post('/correctsforall', async (req, res) => {
+    try{
+        for (let i = 0; i < req.body.length; i++) {
+            const element = req.body[i];
+            console.log(element.answer)
+            let questionnaire = new Questionnaire({ name: element.name, answer: element.answer, text: element.text })
+            await questionnaire.save()
+        }
+        return res.send({saved: true})
+    } catch (error){
+        return res.send({saved: false})
+    }
 })
 
 module.exports = router;

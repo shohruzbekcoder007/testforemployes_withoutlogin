@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser")
 const user_router = require('./routers/user.router')
 const group = require('./routers/group.router')
 const full_test = require('./routers/create_full_test.router')
+const { readFile } = require('fs/promises');
 
 const app = express();
 
@@ -32,7 +33,7 @@ app.use(express.static('./static'));
 app.set("view engine", "pug");
 
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb://127.0.0.1:27017/test2')
+mongoose.connect('mongodb+srv://forhumoyun_aka:forhumoyun_aka@cluster0.ycg5joo.mongodb.net/forhumoyun_aka?retryWrites=true&w=majority')
   .then(() => {
     console.log('MongoDBga ulanish hosil qilindi...');
   })
@@ -45,8 +46,10 @@ app.use('/group', group)
 app.use('/fulltest', full_test)
 
 app.get("/", (req,res) => {
+  const json = require('./static/json/answers.json')
   return res.render('main_all', {
-    testlist: []
+    testlist: [],
+    json: json
   })
 });
 

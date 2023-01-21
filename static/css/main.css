@@ -194,3 +194,19 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.dbn {
+    display: none !important;
+}
+
+.dbb {
+    display: block;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.w100 {
+    width: 100%;
+}
