@@ -67,7 +67,6 @@ $(document).ready(function () {
             group_id: 1,
         }
 
-        console.log(ttt)
         const options = {
             url: '/fulltest',
             method: 'POST',

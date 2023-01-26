@@ -37,7 +37,6 @@ html(lang="en")
                             .ui.form
                                 .grouped.fields
                                     each answer in test.test.answers
-                                        - console.log(answer.text.value)
                                         .field
                                             .ui.radio.checkbox.w100
                                                 if answer.type == "withinput"

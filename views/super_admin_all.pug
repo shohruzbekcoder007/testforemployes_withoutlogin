@@ -20,23 +20,18 @@ html(lang="en")
                         span(data-name=`${answer.name}`, data-id=`${answer.id}`)
                             != `${answer.test.question.uz} <br/> ${answer.test.question.ru}`
                     .content(data-open=`${answer.name}`)
-                        p.transition A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
-                //- .title
-                //-     i.dropdown.icon
-                //-     span  What is a dog?
-                //- .content.open-content
-                //-     p.transition A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
-                //- .title
-                //-     i.dropdown.icon
-                //-     span What kinds of dogs are there?
-                //- .content
-                //-     p.transition There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.
-                //- .title
-                //-     i.dropdown.icon
-                //-     span How do you acquire a dog?
-                //- .content
-                //-     p.transition Three common ways for a prospective owner to acquire a dog is from pet shops, private owners, or shelters.
-                //-     p.transition A pet shop may be the most convenient way to buy a dog. Buying a dog from a private owner allows you to assess the pedigree and upbringing of your dog before choosing to take it home. Lastly, finding your dog from a shelter, helps give a good home to a dog who may not find one so readily.
+                        table.ui.celled.table
+                            thead
+                                tr
+                                    if answer.test.answers
+                                        each ans in answer.test.answers
+                                            th=`${ans.text.uz} (${ans.text.ru})`
+                                        th Изоҳ (Комментарий) 
+                                    else 
+                                        th ...
+                                        th ...
+                                        th Изоҳ (Комментарий)
+                            tbody(data-open-table=`${answer.name}`)
         script(src="/js/jquery.js")
         script(src="/js/axios.js")
         script(src="/js/semantic.min.js")

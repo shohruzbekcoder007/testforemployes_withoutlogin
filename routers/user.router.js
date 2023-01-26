@@ -32,8 +32,7 @@ router.post('/', cookieJwtAuth, async (req, res) => {
 
 })
 
-router.post('/login', cookieJwtAuth, async (req, res) => {
-
+router.post('/login', async (req, res) => {
     let user = await User.findOne({ user_name: req.body.user_name });
     if (!user)
         return res.render('main_all', {
