@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser")
 const user_router = require('./routers/user.router')
 const group = require('./routers/group.router')
 const full_test = require('./routers/create_full_test.router')
-const { readFile } = require('fs/promises');
+const results = require('./routers/results.router')
 
 const app = express();
 
@@ -44,6 +44,7 @@ mongoose.connect('mongodb+srv://forhumoyun_aka:forhumoyun_aka@cluster0.ycg5joo.m
 app.use('/user', user_router)
 app.use('/group', group)
 app.use('/fulltest', full_test)
+app.use('/results', results)
 
 app.get("/", (req,res) => {
   const json = require('./static/json/answers.json')

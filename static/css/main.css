@@ -210,3 +210,11 @@
 .w100 {
     width: 100%;
 }
+
+.open-content {
+    display: block !important;
+}
+
+.ui.styled.accordion .accordion .title, .ui.styled.accordion .title {
+    color: inherit;
+}

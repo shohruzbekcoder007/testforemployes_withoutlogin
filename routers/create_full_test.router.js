@@ -189,8 +189,7 @@ router.post('/corrects', cookieJwtAuth, async (req, res) => {
 router.post('/correctsforall', async (req, res) => {
     try{
         for (let i = 0; i < req.body.length; i++) {
-            const element = req.body[i];
-            console.log(element.answer)
+            const element = req.body[i]
             let questionnaire = new Questionnaire({ name: element.name, answer: element.answer, text: element.text })
             await questionnaire.save()
         }

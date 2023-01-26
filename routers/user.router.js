@@ -7,7 +7,7 @@ const { User } = require('./../models/user.model')
 const { Test } = require('../models/app_test.model')
 const { Result } = require('../models/result.model')
 
-router.post('/', async (req, res) => {
+router.post('/', cookieJwtAuth, async (req, res) => {
 
     try {
         if (req.user.status === 1) {
@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
             let new_user = await user.save()
 
             return res.render('super_admin_main_create_user', {
-                name : req.user.name
+                name : "req.user.name"
             })
 
         } else {
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
 
 })
 
-router.post('/login', async (req, res) => {
+router.post('/login', cookieJwtAuth, async (req, res) => {
 
     let user = await User.findOne({ user_name: req.body.user_name });
     if (!user)
@@ -78,8 +78,10 @@ router.post('/login', async (req, res) => {
     }
 
     if (user.status === 1) {
-        return res.render('super_admin_main', {
-            name: user.name
+        const json = require('../static/json/answers.json')
+        return res.render('super_admin_all', {
+            name: user.name,
+            json: json
         })
     }
 

@@ -1,21 +1,12 @@
-const { Group, validate } = require('./../models/group.model')
 const express = require('express')
 const router = express.Router()
 const _ = require('lodash')
+const { Questionnaire } = require('../models/questionnaire')
 const { cookieJwtAuth } = require('./../middleware/cookieJwtAuth.middleware')
 
-router.get('/', cookieJwtAuth, async function(req, res){
-
-    if (req.user.status === 1) {
-        return res.render('super_admin_main', {
-            name : req.user.name
-        })
-    } else {
-        return res.render('login', {
-
-        })
-    }
-
+router.get('/allres', cookieJwtAuth, async (req, res) => {
+    const result1 = await Questionnaire.find({name: "answer1"});
+    res.send(result1)
 });
 
 module.exports = router;
